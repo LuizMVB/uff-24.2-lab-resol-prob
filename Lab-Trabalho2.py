@@ -1,5 +1,7 @@
-# Alunos: Luiz Miguel Viana Barbosa e Wesley Ferreira
-# Título: Trabalho II de Laboratório de Resolução de Questões
+# Objetivo do Programa: Realizar operações dado um conjunto de dados de alunos contendo nome e nota
+# Nome da Dupla: Luiz Miguel Viana Barbosa e Wesley Ferreira
+# Turma: EA
+# Data da Criação: 28/12/2024
 
 import statistics
 
