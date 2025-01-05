@@ -27,7 +27,7 @@ nome_aluno = input('Aluno: ')
 nota_aluno = float(input('Nota: '))
 
 while nota_aluno >= 0:
-    nome_aluno_list.append(nome_aluno)
+    nome_aluno_list.append(nome_aluno.upper())
     nota_aluno_list.append(nota_aluno)
     
     nome_aluno = input('Aluno: ')
@@ -36,7 +36,6 @@ while nota_aluno >= 0:
 MAX_ALUNOS_REGISTRADOS = len(nome_aluno_list)
 
 opcao = int(input(MSG_SELECAO_OPCAO))
-print('\n')
 
 while opcao != 6:
     if opcao == 1:    
@@ -57,13 +56,11 @@ while opcao != 6:
 
         print('Máximo:',
                 '\n\tNome:', nome_aluno_list_ord_nota[MAX_ALUNOS_REGISTRADOS - 1], 
-                '\n\tNota:', nota_aluno_list_ord_nota[MAX_ALUNOS_REGISTRADOS - 1],
-                '\n----------\n')
+                '\tNota:', nota_aluno_list_ord_nota[MAX_ALUNOS_REGISTRADOS - 1])
     
         print('Mínimo:',
                 '\n\tNome:', nome_aluno_list_ord_nota[0], 
-                '\n\tNota:', nota_aluno_list_ord_nota[0],
-                '\n----------\n')
+                '\tNota:', nota_aluno_list_ord_nota[0])
 
         somatorio_notas = 0.0
         
@@ -71,13 +68,11 @@ while opcao != 6:
             somatorio_notas += nota
         
         print('Média:', somatorio_notas / MAX_ALUNOS_REGISTRADOS)
-        print('\n----------\n')
 
         if MAX_ALUNOS_REGISTRADOS > 1:
             print('Desvio Padrão:', statistics.stdev(nota_aluno_list_ord_nota))
         else:
-            print("ATENÇÃO! Para se calcular o desvio padrão é necessário ao menos 2 alunos registrados!") 
-        print('\n----------\n')
+            print("Desvio Padrão: ATENÇÃO! Para se calcular o desvio padrão é necessário ao menos 2 alunos registrados!")
 
         mediana = 0
         indice_med_1 = int(MAX_ALUNOS_REGISTRADOS / 2) - 1
@@ -88,9 +83,7 @@ while opcao != 6:
         else:
             mediana = nota_aluno_list_ord_nota[indice_med_1 + 1]
 
-        print('Mediana:', mediana, 
-              '\n----------\n')
-        
+        print('Mediana:', mediana)
         print('Primeira(s) Moda(s):')
         
         nota_anterior = nota_aluno_list_ord_nota[0]
@@ -129,8 +122,8 @@ while opcao != 6:
                 contador_modas += 1
 
         for i in range(contador_modas):
-            print('\nNota:', notas_primeira_moda_list[i],
-                  '\nPrimeira Moda:', modas_primeira_moda_list[i])
+            print('\tNota:', notas_primeira_moda_list[i],
+                  '\tPrimeira Moda:', modas_primeira_moda_list[i])
 
     elif opcao == 2:
         if nome_aluno_list_ord_nota == [] or nota_aluno_list_ord_nota == []:
@@ -150,15 +143,26 @@ while opcao != 6:
 
         min = float(input("Mínimo: "))
         max = float(input("Máximo: "))
-        print('\n')
+
+        nota_aluno_list_filtrada = []
+        nome_aluno_list_filtrada = []
 
         for i in range(len(nota_aluno_list_ord_nota)):
-            nome = nome_aluno_list_ord_nota[i]
             nota = nota_aluno_list_ord_nota[i]
-            
+            nome = nome_aluno_list_ord_nota[i]
             if nota >= min and nota <= max:
-                print('Aluno:', nome, '\nNota:', nota)
-                print('\n----------\n')
+                nota_aluno_list_filtrada.append(nota)
+                nome_aluno_list_filtrada.append(nome)
+
+        if nota_aluno_list_filtrada != [] and nome_aluno_list_filtrada != []:
+            for i in range(len(nota_aluno_list_ord_nota)):
+                nome = nome_aluno_list_ord_nota[i]
+                nota = nota_aluno_list_ord_nota[i]
+                
+                if nota >= min and nota <= max:
+                    print('\tAluno:', nome, '\tNota:', nota)
+        else:
+            print('Nenhum resultado encontrado para a faixa especificada.')
 
     elif opcao == 3:
         if nome_aluno_list_ord_nome == [] or nota_aluno_list_ord_nome == []:
@@ -176,15 +180,25 @@ while opcao != 6:
                         nota_aluno_list_ord_nome[i] = nota_aluno_list_ord_nome[j]
                         nota_aluno_list_ord_nome[j] = tmp
                     
-        padrao = input("Padrão: ")
-        print('\n')
+        padrao = input("Padrão: ").upper()
+
+        nome_aluno_list_filtrada = []
+        nota_aluno_list_filtrada = []
 
         for i in range(len(nome_aluno_list_ord_nome)):
             nome = nome_aluno_list_ord_nome[i]
             nota = nota_aluno_list_ord_nome[i]
             if padrao in nome:
-                print('Aluno:', nome, '\nNota:', nota)
-                print('\n----------\n')
+                nome_aluno_list_filtrada.append(nome)
+                nota_aluno_list_filtrada.append(nota)
+        
+        if nome_aluno_list_filtrada != [] and nota_aluno_list_filtrada != []:
+            for i in range(len(nome_aluno_list_filtrada)):
+                nome = nome_aluno_list_filtrada[i]
+                nota = nota_aluno_list_filtrada[i]
+                print('\tAluno:', nome, '\tNota:', nota)
+        else:
+            print('Nenhum resultado encontrado para a faixa especificada.')
 
     elif opcao == 4:
         if nome_aluno_list_ord_nota == [] or nota_aluno_list_ord_nota == []:
@@ -204,7 +218,6 @@ while opcao != 6:
         
         min = float(input("Mínimo: "))
         max = float(input("Máximo: "))
-        print('\n')
 
         nota_aluno_list_filtrada = []
 
@@ -212,25 +225,26 @@ while opcao != 6:
             if nota >= min and nota <= max:
                 nota_aluno_list_filtrada.append(nota)
 
-        frequencia = 0
-        nota_anterior = nota_aluno_list_filtrada[0]
+        if nota_aluno_list_filtrada != []:
+            frequencia = 0
+            nota_anterior = nota_aluno_list_filtrada[0]
 
-        for nota in nota_aluno_list_filtrada:
-            if nota == nota_anterior:
-                frequencia += 1
-            else:
-                print('Nota:', nota_anterior, '\nFrequência:', frequencia)
-                print('\n----------\n')
-                frequencia = 1
-                nota_anterior = nota
-        
-        print('Nota:', nota_anterior, '\nFrequência:', frequencia)
-        print('\n----------\n')
+            for nota in nota_aluno_list_filtrada:
+                if nota == nota_anterior:
+                    frequencia += 1
+                else:
+                    print('\tNota:', nota_anterior, '\tFrequência:', frequencia)
+                    frequencia = 1
+                    nota_anterior = nota
+            
+            print('\tNota:', nota_anterior, '\tFrequência:', frequencia)
+        else:
+            print('Nenhum resultado encontrado para a faixa especificada.')
 
     elif opcao == 5:
         nome = input('Nome: ')
         nota = float(input('Nota: '))
-        nome_aluno_list.append(nome)
+        nome_aluno_list.append(nome.upper())
         nota_aluno_list.append(nota)
         nome_aluno_list_ord_nota = []
         nota_aluno_list_ord_nota = []
@@ -242,4 +256,3 @@ while opcao != 6:
 
     
     opcao = int(input(MSG_SELECAO_OPCAO))
-    print('\n')
