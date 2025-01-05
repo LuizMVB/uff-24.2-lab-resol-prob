@@ -33,18 +33,21 @@ while nota_aluno >= 0:
     nome_aluno = input('Aluno: ')
     nota_aluno = float(input('Nota: '))
 
-MAX_ALUNOS_REGISTRADOS = len(nome_aluno_list)
+max_alunos_registrados = len(nome_aluno_list)
 
 opcao = int(input(MSG_SELECAO_OPCAO))
 
 while opcao != 6:
-    if opcao == 1:    
+    if opcao == 1:
+
+        # Verifica se há listas ordenadas por nota, 
+        # caso não tenha, cria uma nova a partir das entradas
         if nome_aluno_list_ord_nota == [] or nota_aluno_list_ord_nota == []:
             nome_aluno_list_ord_nota = nome_aluno_list
             nota_aluno_list_ord_nota = nota_aluno_list
 
-            for i in range(MAX_ALUNOS_REGISTRADOS - 1):
-                for j in range(i + 1, MAX_ALUNOS_REGISTRADOS):
+            for i in range(max_alunos_registrados - 1):
+                for j in range(i + 1, max_alunos_registrados):
                     if nota_aluno_list_ord_nota[j] < nota_aluno_list_ord_nota[i]:
                         tmp = nota_aluno_list_ord_nota[i]
                         nota_aluno_list_ord_nota[i] = nota_aluno_list_ord_nota[j]
@@ -55,8 +58,8 @@ while opcao != 6:
                         nome_aluno_list_ord_nota[j] = tmp   
 
         print('Máximo:',
-                '\n\tNome:', nome_aluno_list_ord_nota[MAX_ALUNOS_REGISTRADOS - 1], 
-                '\tNota:', nota_aluno_list_ord_nota[MAX_ALUNOS_REGISTRADOS - 1])
+                '\n\tNome:', nome_aluno_list_ord_nota[max_alunos_registrados - 1], 
+                '\tNota:', nota_aluno_list_ord_nota[max_alunos_registrados - 1])
     
         print('Mínimo:',
                 '\n\tNome:', nome_aluno_list_ord_nota[0], 
@@ -67,16 +70,16 @@ while opcao != 6:
         for nota in nota_aluno_list_ord_nota:
             somatorio_notas += nota
         
-        print('Média:', somatorio_notas / MAX_ALUNOS_REGISTRADOS)
+        print('Média:', somatorio_notas / max_alunos_registrados)
 
-        if MAX_ALUNOS_REGISTRADOS > 1:
+        if max_alunos_registrados > 1:
             print('Desvio Padrão:', statistics.stdev(nota_aluno_list_ord_nota))
         else:
             print("Desvio Padrão: ATENÇÃO! Para se calcular o desvio padrão é necessário ao menos 2 alunos registrados!")
 
         mediana = 0
-        indice_med_1 = int(MAX_ALUNOS_REGISTRADOS / 2) - 1
-        if MAX_ALUNOS_REGISTRADOS % 2 == 0:
+        indice_med_1 = int(max_alunos_registrados / 2) - 1
+        if max_alunos_registrados % 2 == 0:
             indice_med_2 = indice_med_1 + 1
             mediana = (nota_aluno_list_ord_nota[indice_med_1] + 
                        nota_aluno_list_ord_nota[indice_med_2]) / 2
@@ -130,8 +133,8 @@ while opcao != 6:
             nome_aluno_list_ord_nota = nome_aluno_list
             nota_aluno_list_ord_nota = nota_aluno_list
 
-            for i in range(MAX_ALUNOS_REGISTRADOS - 1):
-                for j in range(i + 1, MAX_ALUNOS_REGISTRADOS):
+            for i in range(max_alunos_registrados - 1):
+                for j in range(i + 1, max_alunos_registrados):
                     if nota_aluno_list_ord_nota[j] < nota_aluno_list_ord_nota[i]:
                         tmp = nota_aluno_list_ord_nota[i]
                         nota_aluno_list_ord_nota[i] = nota_aluno_list_ord_nota[j]
@@ -147,7 +150,7 @@ while opcao != 6:
         nota_aluno_list_filtrada = []
         nome_aluno_list_filtrada = []
 
-        for i in range(len(nota_aluno_list_ord_nota)):
+        for i in range(max_alunos_registrados):
             nota = nota_aluno_list_ord_nota[i]
             nome = nome_aluno_list_ord_nota[i]
             if nota >= min and nota <= max:
@@ -155,7 +158,7 @@ while opcao != 6:
                 nome_aluno_list_filtrada.append(nome)
 
         if nota_aluno_list_filtrada != [] and nome_aluno_list_filtrada != []:
-            for i in range(len(nota_aluno_list_ord_nota)):
+            for i in range(max_alunos_registrados):
                 nome = nome_aluno_list_ord_nota[i]
                 nota = nota_aluno_list_ord_nota[i]
                 
@@ -169,8 +172,8 @@ while opcao != 6:
             nome_aluno_list_ord_nome = nome_aluno_list
             nota_aluno_list_ord_nome = nota_aluno_list
 
-            for i in range(MAX_ALUNOS_REGISTRADOS - 1):
-                for j in range(i + 1, MAX_ALUNOS_REGISTRADOS):
+            for i in range(max_alunos_registrados - 1):
+                for j in range(i + 1, max_alunos_registrados):
                     if nome_aluno_list_ord_nome[j] < nome_aluno_list_ord_nome[i]:
                         tmp = nome_aluno_list_ord_nome[i]
                         nome_aluno_list_ord_nome[i] = nome_aluno_list_ord_nome[j]
@@ -185,7 +188,7 @@ while opcao != 6:
         nome_aluno_list_filtrada = []
         nota_aluno_list_filtrada = []
 
-        for i in range(len(nome_aluno_list_ord_nome)):
+        for i in range(max_alunos_registrados):
             nome = nome_aluno_list_ord_nome[i]
             nota = nota_aluno_list_ord_nome[i]
             if padrao in nome:
@@ -205,8 +208,8 @@ while opcao != 6:
             nome_aluno_list_ord_nota = nome_aluno_list
             nota_aluno_list_ord_nota = nota_aluno_list
 
-            for i in range(MAX_ALUNOS_REGISTRADOS - 1):
-                for j in range(i + 1, MAX_ALUNOS_REGISTRADOS):
+            for i in range(max_alunos_registrados - 1):
+                for j in range(i + 1, max_alunos_registrados):
                     if nota_aluno_list_ord_nota[j] < nota_aluno_list_ord_nota[i]:
                         tmp_nota = nota_aluno_list_ord_nota[i]
                         nota_aluno_list_ord_nota[i] = nota_aluno_list_ord_nota[j]
@@ -246,6 +249,7 @@ while opcao != 6:
         nota = float(input('Nota: '))
         nome_aluno_list.append(nome.upper())
         nota_aluno_list.append(nota)
+        max_alunos_registrados += 1
         nome_aluno_list_ord_nota = []
         nota_aluno_list_ord_nota = []
         nome_aluno_list_ord_nome = []
