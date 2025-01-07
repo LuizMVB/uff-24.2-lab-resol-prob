@@ -235,10 +235,6 @@ if len(matriz_alunos[0]) > 0:
         # Apresentar relação de alunos e respectivas notas (ordenado por nomes) cujos nomes contenham uma certa string (caso a entrada seja vazia, obterá todos os nomes);
         elif opcao == 3:
 
-            # 🚨 Por que repetir código aqui? Pensando em realizar somente as operações necessárias
-            # e na restrição quanto ao uso de funções, decidimos repetir este código para que
-            # o usuário só realize a ordenação que for necessária para opção selecionada
-
             # Verifica se já houve ordenação por nome para as notas e nomes dos alunos
             if not matriz_alunos_ord_nome:
 
