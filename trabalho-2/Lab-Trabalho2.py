@@ -26,7 +26,7 @@ nota_aluno_list_ord_nome = []
 nota_aluno = float(input('Nota: '))
 
 if nota_aluno >= 0:
-        nome_aluno = input('Aluno: ')
+    nome_aluno = input('Aluno: ')
 
 while nota_aluno >= 0:
     nome_aluno_list.append(nome_aluno.upper())
